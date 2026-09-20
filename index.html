@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>北疆秋色自驾 · 9/24–10/3</title>
+  <meta name="description" content="乌鲁木齐—福海—阿勒泰—阿禾公路—禾木—喀纳斯—乌尔禾—独山子—乌鲁木齐，自驾路线互动地图。" />
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>
+    :root{--bg:#07110d;--panel:rgba(11,25,19,.88);--text:#f5f7f5;--muted:#aebbb3;--border:rgba(255,255,255,.10);--shadow:0 24px 80px rgba(0,0,0,.42);--accent:#dfff78}
+    *{box-sizing:border-box} html,body,#app{height:100%;margin:0}
+    body{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
+    #map{position:absolute;inset:0}
+    .leaflet-control-attribution{background:rgba(5,14,10,.72)!important;color:#aebbb3!important;backdrop-filter:blur(10px)}
+    .leaflet-control-attribution a{color:#dfff78!important}
+    .leaflet-control-zoom a{background:rgba(11,25,19,.88)!important;color:#fff!important;border-color:var(--border)!important}
+    .topbar{position:absolute;left:20px;right:20px;top:18px;z-index:1000;display:flex;justify-content:space-between;gap:12px;pointer-events:none}
+    .brand,.date-pill{pointer-events:auto;background:rgba(7,18,13,.84);border:1px solid var(--border);backdrop-filter:blur(18px) saturate(140%);box-shadow:var(--shadow);border-radius:18px}
+    .brand{padding:14px 17px}.brand h1{font-size:17px;line-height:1;margin:0 0 7px;font-weight:760}.brand p{font-size:12px;margin:0;color:var(--muted)}
+    .date-pill{padding:12px 14px;align-self:flex-start;font-size:12px;color:#e8efe9}
+    .panel{position:absolute;z-index:1000;left:20px;top:108px;bottom:20px;width:min(390px,calc(100vw - 40px));background:var(--panel);border:1px solid var(--border);backdrop-filter:blur(20px) saturate(150%);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .panel-head{padding:18px 18px 12px;border-bottom:1px solid var(--border)}.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .panel-head h2{font-size:24px;line-height:1.15;margin:7px 0 6px}.panel-head p{color:var(--muted);font-size:12px;line-height:1.6;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.stat{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:14px;padding:10px}
+    .stat b{display:block;font-size:14px}.stat span{font-size:10px;color:var(--muted)}.days{overflow:auto;padding:12px;scrollbar-width:thin}
+    .day{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:11px;border-radius:16px;cursor:pointer;border:1px solid transparent;transition:.18s ease;margin-bottom:6px}
+    .day:hover{background:rgba(255,255,255,.055)}.day.active{background:rgba(223,255,120,.10);border-color:rgba(223,255,120,.28)}
+    .num{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1px solid var(--border)}
+    .num small{font-size:9px;color:var(--muted);font-weight:600}.day.active .num{background:var(--accent);color:#102015}.day.active .num small{color:#3c513f}
+    .route-title{font-size:13px;font-weight:760;margin:2px 0 4px}.route-sub{font-size:11px;color:var(--muted);line-height:1.45}
+    .legend{position:absolute;z-index:999;right:18px;bottom:18px;background:rgba(7,18,13,.82);border:1px solid var(--border);backdrop-filter:blur(14px);border-radius:15px;padding:10px 12px;color:#dfe8e1;font-size:11px;box-shadow:var(--shadow)}
+    .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:7px}
+    .stop-pin{width:28px;height:28px;border-radius:50% 50% 50% 7px;transform:rotate(-45deg);background:#dfff78;border:2px solid #112019;box-shadow:0 6px 18px rgba(0,0,0,.38)}
+    .stop-pin>span{transform:rotate(45deg);display:flex;width:100%;height:100%;align-items:center;justify-content:center;color:#172219;font-size:10px;font-weight:900}
+    .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0e1d16;color:#f5f7f5}.leaflet-popup-content{margin:13px 15px;line-height:1.5}.popup-title{font-weight:800;font-size:14px;margin-bottom:4px}.popup-meta{font-size:11px;color:#aebbb3}
+    .mobile-toggle{display:none}
+    @media(max-width:760px){.topbar{left:12px;right:12px;top:12px}.brand{padding:12px 14px}.brand h1{font-size:15px}.brand p{display:none}.date-pill{display:none}.panel{left:12px;right:12px;width:auto;top:auto;bottom:12px;height:48vh;border-radius:22px}.panel.collapsed{height:76px}.panel.collapsed .days,.panel.collapsed .stats,.panel.collapsed .panel-head p,.panel.collapsed .eyebrow{display:none}.panel.collapsed .panel-head{border:0;padding:16px 18px}.panel.collapsed .panel-head h2{font-size:17px;margin:0}.mobile-toggle{display:block;position:absolute;right:14px;top:14px;background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--border);border-radius:11px;padding:8px 10px;cursor:pointer}.legend{display:none}}
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <div class="topbar">
+    <div class="brand"><h1>北疆秋色自驾</h1><p>乌鲁木齐 → 阿禾公路 → 禾木 → 喀纳斯 → 乌尔禾 → 独山子</p></div>
+    <div class="date-pill">2026 · 09/24 — 10/03　·　4人自驾</div>
+  </div>
+  <section class="panel" id="panel">
+    <button class="mobile-toggle" id="toggle">收起</button>
+    <div class="panel-head">
+      <div class="eyebrow">Northern Xinjiang Road Trip</div>
+      <h2>10天 · 北疆经典秋色环线</h2>
+      <p>线路用于行程展示；实际驾驶请以当日导航、交管和天气信息为准。</p>
+      <div class="stats"><div class="stat"><b>9/24–10/3</b><span>旅行日期</span></div><div class="stat"><b>4 人</b><span>问界 M7</span></div><div class="stat"><b>8+ 站</b><span>核心停靠点</span></div></div>
+    </div>
+    <div class="days" id="days"></div>
+  </section>
+  <div class="legend"><span class="dot"></span>点击左侧每天行程，地图自动聚焦</div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const stops=[
+{name:"乌鲁木齐",lat:43.8256,lng:87.6168,note:"9/24抵达 · 9/25半日 · 10/2返回"},
+{name:"福海",lat:47.1119,lng:87.4867,note:"9/25晚住宿"},
+{name:"阿勒泰",lat:47.8484,lng:88.1396,note:"9/26住宿与补给"},
+{name:"阿禾公路",lat:48.175,lng:87.83,note:"9/27景观公路"},
+{name:"禾木",lat:48.5760,lng:87.4370,note:"9/27–9/29"},
+{name:"贾登峪",lat:48.501,lng:87.096,note:"9/29转入喀纳斯"},
+{name:"喀纳斯",lat:48.704,lng:87.000,note:"9/29–9/30"},
+{name:"布尔津",lat:47.7047,lng:86.8630,note:"9/30途中"},
+{name:"乌尔禾",lat:46.089,lng:85.693,note:"9/30–10/1"},
+{name:"独山子",lat:44.327,lng:84.887,note:"10/1–10/2"}];
+const days=[
+{date:"9/24",title:"抵达乌鲁木齐",sub:"落地 · 取车 · 入住",ids:[0]},
+{date:"9/25",title:"乌鲁木齐 → 福海",sub:"乌鲁木齐半日 · 下午走 S21 北上",ids:[0,1]},
+{date:"9/26",title:"福海 → 阿勒泰",sub:"轻松转场 · 下午补给与休息",ids:[1,2]},
+{date:"9/27",title:"阿勒泰 → 阿禾公路 → 禾木",sub:"全天景观公路 · 不赶夜路",ids:[2,3,4]},
+{date:"9/28",title:"禾木全天",sub:"晨雾 · 白桦林 · 禾木河 · 日落",ids:[4]},
+{date:"9/29",title:"禾木 → 贾登峪 → 喀纳斯",sub:"三湾 · 喀纳斯湖",ids:[4,5,6]},
+{date:"9/30",title:"喀纳斯 → 布尔津 → 乌尔禾",sub:"出山南下 · 视时间安排魔鬼城",ids:[6,7,8]},
+{date:"10/1",title:"乌尔禾 → 独山子",sub:"世界魔鬼城 · 独山子大峡谷",ids:[8,9]},
+{date:"10/2",title:"独山子 → 乌鲁木齐",sub:"走 G30 返回 · 不依赖独库公路",ids:[9,0]},
+{date:"10/3",title:"乌鲁木齐 → 机场",sub:"上午机动 · 下午返程",ids:[0]}];
+const map=L.map('map',{zoomControl:false,minZoom:4}).setView([46.6,86.8],6);
+L.control.zoom({position:'topright'}).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const routeLatLngs=stops.map(s=>[s.lat,s.lng]);
+L.polyline(routeLatLngs,{color:'#dfff78',weight:5,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(map);
+const markers=stops.map((s,i)=>{const icon=L.divIcon({className:'',html:`<div class="stop-pin"><span>${i+1}</span></div>`,iconSize:[30,30],iconAnchor:[15,28],popupAnchor:[0,-25]});return L.marker([s.lat,s.lng],{icon}).bindPopup(`<div class="popup-title">${s.name}</div><div class="popup-meta">${s.note}</div>`).addTo(map);});
+map.fitBounds(L.latLngBounds(routeLatLngs),{paddingTopLeft:[420,90],paddingBottomRight:[70,70]});
+const daysEl=document.getElementById('days');
+days.forEach((d,idx)=>{const el=document.createElement('div');el.className='day'+(idx===3?' active':'');const[m,dd]=d.date.split('/');el.innerHTML=`<div class="num">${dd}<small>${m}月</small></div><div><div class="route-title">${d.title}</div><div class="route-sub">${d.sub}</div></div>`;el.onclick=()=>{document.querySelectorAll('.day').forEach(x=>x.classList.remove('active'));el.classList.add('active');const pts=d.ids.map(id=>[stops[id].lat,stops[id].lng]);if(pts.length===1){map.flyTo(pts[0],10,{duration:.8});markers[d.ids[0]].openPopup();}else{map.flyToBounds(L.latLngBounds(pts),{paddingTopLeft:window.innerWidth<760?[35,80]:[420,90],paddingBottomRight:[40,70],duration:.8,maxZoom:9});}if(window.innerWidth<760)document.getElementById('panel').classList.add('collapsed');};daysEl.appendChild(el);});
+document.getElementById('toggle').onclick=()=>{const p=document.getElementById('panel');p.classList.toggle('collapsed');document.getElementById('toggle').textContent=p.classList.contains('collapsed')?'展开':'收起';setTimeout(()=>map.invalidateSize(),250);};
+window.addEventListener('resize',()=>map.invalidateSize());
+</script>
+</body>
+</html>
