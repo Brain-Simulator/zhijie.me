@@ -1,0 +1,5 @@
+[functions.photo-upload]
+verify_jwt = false
+
+[functions.photo-gallery]
+verify_jwt = false
