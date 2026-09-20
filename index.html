@@ -34,8 +34,12 @@
     .stop-pin{width:28px;height:28px;border-radius:50% 50% 50% 7px;transform:rotate(-45deg);background:#dfff78;border:2px solid #112019;box-shadow:0 6px 18px rgba(0,0,0,.38)}
     .stop-pin>span{transform:rotate(45deg);display:flex;width:100%;height:100%;align-items:center;justify-content:center;color:#172219;font-size:10px;font-weight:900}
     .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0e1d16;color:#f5f7f5}.leaflet-popup-content{margin:13px 15px;line-height:1.5}.popup-title{font-weight:800;font-size:14px;margin-bottom:4px}.popup-meta{font-size:11px;color:#aebbb3}
+    .top-actions{display:flex;align-items:flex-start;gap:8px;pointer-events:auto}.glass-btn{appearance:none;border:1px solid var(--border);background:rgba(7,18,13,.84);color:#f5f7f5;border-radius:14px;padding:11px 14px;font:inherit;font-size:12px;font-weight:760;cursor:pointer;backdrop-filter:blur(18px) saturate(140%);box-shadow:var(--shadow);transition:.18s ease}.glass-btn:hover{background:rgba(223,255,120,.13);border-color:rgba(223,255,120,.32)}.glass-btn.primary{background:var(--accent);color:#102015;border-color:transparent}.glass-btn.primary:hover{filter:brightness(.96)}
+    .photo-overlay{position:fixed;inset:0;z-index:2200;background:rgba(3,9,6,.94);backdrop-filter:blur(18px);display:none;overflow:auto}.photo-overlay.show{display:block}.photo-shell{max-width:1180px;margin:0 auto;padding:26px 22px 52px}.photo-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.photo-head h2{margin:0;font-size:28px}.photo-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.photo-head-actions{display:flex;gap:8px}.close-btn{width:42px;height:42px;border-radius:14px;padding:0;font-size:22px}.locked-card,.upload-card{max-width:460px;margin:10vh auto 0;background:rgba(11,25,19,.92);border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:var(--shadow)}.locked-card h3,.upload-card h3{margin:0 0 7px;font-size:22px}.locked-card p,.upload-card p{margin:0 0 18px;color:var(--muted);font-size:12px;line-height:1.6}.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}.field label{font-size:11px;color:#dce6df;font-weight:700}.field input{width:100%;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;border-radius:13px;padding:12px 13px;outline:none;font:inherit}.field input:focus{border-color:rgba(223,255,120,.48)}.remember{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;margin:12px 0 16px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.status{min-height:18px;color:var(--muted);font-size:11px;margin-top:10px}.status.error{color:#ff9e9e}.status.ok{color:#dfff78}
+    .gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.photo-card{position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--border);background:rgba(255,255,255,.05);box-shadow:0 12px 36px rgba(0,0,0,.25)}.photo-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#102018;cursor:zoom-in}.photo-meta{padding:12px 13px 14px}.photo-place{font-size:13px;font-weight:800}.photo-time{font-size:10px;color:var(--muted);margin-top:5px}.empty-gallery{grid-column:1/-1;text-align:center;color:var(--muted);padding:12vh 20px}.dialog-backdrop{position:fixed;inset:0;z-index:2600;background:rgba(0,0,0,.66);display:none;align-items:center;justify-content:center;padding:18px}.dialog-backdrop.show{display:flex}.upload-card{margin:0;width:min(520px,100%);max-height:90vh;overflow:auto}.preview{display:none;width:100%;max-height:240px;object-fit:cover;border-radius:14px;margin:10px 0;border:1px solid var(--border)}.upload-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+    .lightbox{position:fixed;inset:0;z-index:2800;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:24px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:90vh;border-radius:16px}.lightbox button{position:absolute;right:18px;top:18px}
     .mobile-toggle{display:none}
-    @media(max-width:760px){.topbar{left:12px;right:12px;top:12px}.brand{padding:12px 14px}.brand h1{font-size:15px}.brand p{display:none}.date-pill{display:none}.panel{left:12px;right:12px;width:auto;top:auto;bottom:12px;height:48vh;border-radius:22px}.panel.collapsed{height:76px}.panel.collapsed .days,.panel.collapsed .stats,.panel.collapsed .panel-head p,.panel.collapsed .eyebrow{display:none}.panel.collapsed .panel-head{border:0;padding:16px 18px}.panel.collapsed .panel-head h2{font-size:17px;margin:0}.mobile-toggle{display:block;position:absolute;right:14px;top:14px;background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--border);border-radius:11px;padding:8px 10px;cursor:pointer}.legend{display:none}}
+    @media(max-width:760px){.topbar{left:12px;right:12px;top:12px}.brand{padding:12px 14px}.brand h1{font-size:15px}.brand p{display:none}.date-pill{display:none}.top-actions{gap:6px}.top-actions .glass-btn{padding:10px 11px}.gallery-grid{grid-template-columns:1fr}.photo-shell{padding:18px 12px 36px}.photo-head h2{font-size:22px}.form-row{grid-template-columns:1fr}.panel{left:12px;right:12px;width:auto;top:auto;bottom:12px;height:48vh;border-radius:22px}.panel.collapsed{height:76px}.panel.collapsed .days,.panel.collapsed .stats,.panel.collapsed .panel-head p,.panel.collapsed .eyebrow{display:none}.panel.collapsed .panel-head{border:0;padding:16px 18px}.panel.collapsed .panel-head h2{font-size:17px;margin:0}.mobile-toggle{display:block;position:absolute;right:14px;top:14px;background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--border);border-radius:11px;padding:8px 10px;cursor:pointer}.legend{display:none}}
   </style>
 </head>
 <body>
@@ -43,7 +47,7 @@
   <div id="map"></div>
   <div class="topbar">
     <div class="brand"><h1>北疆秋色自驾</h1><p>乌鲁木齐 → 阿禾公路 → 禾木 → 喀纳斯 → 乌尔禾 → 独山子</p></div>
-    <div class="date-pill">2026 · 09/24 — 10/03　·　4人自驾</div>
+    <div class="top-actions"><button class="glass-btn" id="openGallery">照片墙</button><button class="glass-btn primary" id="openUpload">上传照片</button><div class="date-pill">2026 · 09/24 — 10/03　·　4人自驾</div></div>
   </div>
   <section class="panel" id="panel">
     <button class="mobile-toggle" id="toggle">收起</button>
@@ -57,7 +61,42 @@
   </section>
   <div class="legend"><span class="dot"></span>点击左侧每天行程，地图自动聚焦</div>
 </div>
+<div class="photo-overlay" id="photoWall">
+  <div class="photo-shell">
+    <div class="photo-head">
+      <div><h2>新疆旅途照片墙</h2><p>照片按拍摄时间排序 · 每张照片显示拍摄地点</p></div>
+      <div class="photo-head-actions"><button class="glass-btn primary" id="uploadFromGallery">上传照片</button><button class="glass-btn close-btn" id="closeGallery">×</button></div>
+    </div>
+    <div class="locked-card" id="galleryLocked">
+      <h3>查看照片墙</h3>
+      <p>上传照片无需密码；查看照片需要共享密码。密码不会写在网页源码中。</p>
+      <div class="field"><label for="galleryPassword">查看密码</label><input id="galleryPassword" type="password" autocomplete="current-password" placeholder="请输入密码"></div>
+      <label class="remember"><input type="checkbox" id="rememberPassword"> 记住密码（仅保存在当前浏览器）</label>
+      <button class="glass-btn primary" id="unlockGallery" style="width:100%">进入照片墙</button>
+      <div class="status" id="galleryStatus"></div>
+    </div>
+    <div class="gallery-grid" id="galleryGrid" hidden></div>
+  </div>
+</div>
+<div class="dialog-backdrop" id="uploadModal">
+  <form class="upload-card" id="uploadForm">
+    <h3>上传照片</h3>
+    <p>不需要密码。若照片带 GPS，会自动识别并填入附近行程地点；你也可以手动修改。</p>
+    <div class="field"><label for="photoFile">选择照片</label><input id="photoFile" name="photo" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required></div>
+    <img class="preview" id="photoPreview" alt="照片预览">
+    <div class="field"><label for="photoLocation">拍摄地点 *</label><input id="photoLocation" name="location" maxlength="120" placeholder="例如：禾木村 / 喀纳斯三湾" required></div>
+    <div class="form-row">
+      <div class="field"><label for="photoTakenAt">拍摄时间</label><input id="photoTakenAt" name="taken_at" type="datetime-local"></div>
+      <div class="field"><label for="photoCaption">备注</label><input id="photoCaption" name="caption" maxlength="160" placeholder="可选"></div>
+    </div>
+    <input id="photoLat" name="latitude" type="hidden"><input id="photoLng" name="longitude" type="hidden">
+    <div class="status" id="uploadStatus"></div>
+    <div class="upload-actions"><button type="button" class="glass-btn" id="cancelUpload">取消</button><button type="submit" class="glass-btn primary" id="submitUpload">上传</button></div>
+  </form>
+</div>
+<div class="lightbox" id="lightbox"><button class="glass-btn close-btn" id="closeLightbox">×</button><img id="lightboxImage" alt="大图"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js"></script>
 <script>
 const stops=[
 {name:"乌鲁木齐",lat:43.8256,lng:87.6168,note:"9/24抵达 · 9/25半日 · 10/2返回"},
@@ -92,6 +131,102 @@ const daysEl=document.getElementById('days');
 days.forEach((d,idx)=>{const el=document.createElement('div');el.className='day'+(idx===3?' active':'');const[m,dd]=d.date.split('/');el.innerHTML=`<div class="num">${dd}<small>${m}月</small></div><div><div class="route-title">${d.title}</div><div class="route-sub">${d.sub}</div></div>`;el.onclick=()=>{document.querySelectorAll('.day').forEach(x=>x.classList.remove('active'));el.classList.add('active');const pts=d.ids.map(id=>[stops[id].lat,stops[id].lng]);if(pts.length===1){map.flyTo(pts[0],10,{duration:.8});markers[d.ids[0]].openPopup();}else{map.flyToBounds(L.latLngBounds(pts),{paddingTopLeft:window.innerWidth<760?[35,80]:[420,90],paddingBottomRight:[40,70],duration:.8,maxZoom:9});}if(window.innerWidth<760)document.getElementById('panel').classList.add('collapsed');};daysEl.appendChild(el);});
 document.getElementById('toggle').onclick=()=>{const p=document.getElementById('panel');p.classList.toggle('collapsed');document.getElementById('toggle').textContent=p.classList.contains('collapsed')?'展开':'收起';setTimeout(()=>map.invalidateSize(),250);};
 window.addEventListener('resize',()=>map.invalidateSize());
+
+const PHOTO_API_BASE='https://YOUR_PROJECT.supabase.co/functions/v1';
+const PHOTO_PASSWORD_KEY='xinjiang-photo-wall-password';
+const photoWall=document.getElementById('photoWall');
+const galleryLocked=document.getElementById('galleryLocked');
+const galleryGrid=document.getElementById('galleryGrid');
+const galleryPassword=document.getElementById('galleryPassword');
+const rememberPassword=document.getElementById('rememberPassword');
+const galleryStatus=document.getElementById('galleryStatus');
+const uploadModal=document.getElementById('uploadModal');
+const uploadForm=document.getElementById('uploadForm');
+const uploadStatus=document.getElementById('uploadStatus');
+const photoFile=document.getElementById('photoFile');
+const photoLocation=document.getElementById('photoLocation');
+const photoTakenAt=document.getElementById('photoTakenAt');
+const photoLat=document.getElementById('photoLat');
+const photoLng=document.getElementById('photoLng');
+const photoPreview=document.getElementById('photoPreview');
+
+function apiReady(){return !PHOTO_API_BASE.includes('YOUR_PROJECT')}
+function showStatus(el,msg,type=''){el.textContent=msg;el.className='status'+(type?' '+type:'')}
+function openGallery(){photoWall.classList.add('show');document.body.style.overflow='hidden';const saved=localStorage.getItem(PHOTO_PASSWORD_KEY);if(saved){galleryPassword.value=saved;rememberPassword.checked=true;loadGallery(saved,true)}}
+function closeGallery(){photoWall.classList.remove('show');document.body.style.overflow='hidden'}
+function openUpload(){uploadModal.classList.add('show');showStatus(uploadStatus,'')}
+function closeUpload(){uploadModal.classList.remove('show');uploadForm.reset();photoPreview.style.display='none';photoPreview.removeAttribute('src');photoLat.value='';photoLng.value='';showStatus(uploadStatus,'')}
+function rad(x){return x*Math.PI/180}
+function distKm(a,b,c,d){const R=6371,dp=rad(c-a),dl=rad(d-b),q=Math.sin(dp/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dl/2)**2;return 2*R*Math.asin(Math.sqrt(q))}
+function nearestStop(lat,lng){return stops.map(s=>({...s,d:distKm(lat,lng,s.lat,s.lng)})).sort((a,b)=>a.d-b.d)[0]}
+function escapeHtml(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function formatPhotoTime(v){if(!v)return '时间未记录';const d=new Date(v);return Number.isNaN(d.getTime())?'时间未记录':d.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}
+async function loadGallery(password,auto=false){
+  if(!apiReady()){showStatus(galleryStatus,'照片服务尚未配置。请先按仓库里的 PHOTO_WALL_SETUP.md 完成一次 Supabase 设置。','error');return}
+  showStatus(galleryStatus,'正在读取照片…');
+  try{
+    const r=await fetch(PHOTO_API_BASE+'/photo-gallery',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({password})});
+    if(!r.ok){if(r.status===401){localStorage.removeItem(PHOTO_PASSWORD_KEY);rememberPassword.checked=false}throw new Error(r.status===401?'密码不正确':'照片读取失败')}
+    const data=await r.json();
+    if(rememberPassword.checked)localStorage.setItem(PHOTO_PASSWORD_KEY,password);else if(!auto)localStorage.removeItem(PHOTO_PASSWORD_KEY);
+    galleryLocked.style.display='none';galleryGrid.hidden=false;galleryGrid.innerHTML='';
+    if(!data.photos?.length){galleryGrid.innerHTML='<div class="empty-gallery">还没有照片。点击右上角“上传照片”加入第一张。</div>';return}
+    for(const p of data.photos){
+      const card=document.createElement('article');card.className='photo-card';
+      card.innerHTML='<img loading="lazy" src="'+escapeHtml(p.url)+'" alt="'+escapeHtml(p.location)+'"><div class="photo-meta"><div class="photo-place">📍 '+escapeHtml(p.location)+'</div><div class="photo-time">'+escapeHtml(formatPhotoTime(p.taken_at||p.uploaded_at))+(p.caption?' · '+escapeHtml(p.caption):'')+'</div></div>';
+      card.querySelector('img').onclick=()=>{document.getElementById('lightboxImage').src=p.url;document.getElementById('lightbox').classList.add('show')};
+      galleryGrid.appendChild(card);
+    }
+  }catch(e){galleryLocked.style.display='block';galleryGrid.hidden=true;showStatus(galleryStatus,e.message||'照片读取失败','error')}
+}
+document.getElementById('openGallery').onclick=openGallery;
+document.getElementById('closeGallery').onclick=()=>{photoWall.classList.remove('show');document.body.style.overflow='hidden'};
+document.getElementById('unlockGallery').onclick=()=>loadGallery(galleryPassword.value);
+galleryPassword.addEventListener('keydown',e=>{if(e.key==='Enter')loadGallery(galleryPassword.value)});
+document.getElementById('openUpload').onclick=openUpload;
+document.getElementById('uploadFromGallery').onclick=openUpload;
+document.getElementById('cancelUpload').onclick=closeUpload;
+uploadModal.addEventListener('click',e=>{if(e.target===uploadModal)closeUpload()});
+document.getElementById('closeLightbox').onclick=()=>document.getElementById('lightbox').classList.remove('show');
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')e.currentTarget.classList.remove('show')});
+
+photoFile.addEventListener('change',async()=>{
+  const file=photoFile.files?.[0];if(!file)return;
+  if(file.type.startsWith('image/')){photoPreview.src=URL.createObjectURL(file);photoPreview.style.display='block'}
+  showStatus(uploadStatus,'正在读取照片信息…');
+  try{
+    if(window.exifr){
+      const gps=await exifr.gps(file);
+      if(gps?.latitude!=null&&gps?.longitude!=null){
+        photoLat.value=gps.latitude;photoLng.value=gps.longitude;
+        const n=nearestStop(gps.latitude,gps.longitude);
+        photoLocation.value=n&&n.d<80?n.name+'附近':'GPS '+gps.latitude.toFixed(4)+', '+gps.longitude.toFixed(4);
+      }
+      const meta=await exifr.parse(file,['DateTimeOriginal']);
+      if(meta?.DateTimeOriginal instanceof Date&&!Number.isNaN(meta.DateTimeOriginal.getTime())){
+        const d=meta.DateTimeOriginal, pad=n=>String(n).padStart(2,'0');
+        photoTakenAt.value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());
+      }
+    }
+    showStatus(uploadStatus,photoLocation.value?'已读取照片信息，可直接上传。':'未读取到 GPS，请手动填写拍摄地点。');
+  }catch(e){showStatus(uploadStatus,'未读取到完整 EXIF，请手动确认拍摄地点。')}
+});
+
+uploadForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!apiReady()){showStatus(uploadStatus,'照片服务尚未配置。请先按 PHOTO_WALL_SETUP.md 完成 Supabase 设置。','error');return}
+  const file=photoFile.files?.[0];if(!file||!photoLocation.value.trim()){showStatus(uploadStatus,'请选择照片并填写拍摄地点。','error');return}
+  const btn=document.getElementById('submitUpload');btn.disabled=true;showStatus(uploadStatus,'正在上传…');
+  const fd=new FormData();fd.append('photo',file);fd.append('location',photoLocation.value.trim());fd.append('caption',document.getElementById('photoCaption').value.trim());fd.append('taken_at',photoTakenAt.value?new Date(photoTakenAt.value).toISOString():'');fd.append('latitude',photoLat.value);fd.append('longitude',photoLng.value);
+  try{
+    const r=await fetch(PHOTO_API_BASE+'/photo-upload',{method:'POST',body:fd});
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(data.error||'上传失败');
+    showStatus(uploadStatus,'上传成功。','ok');
+    setTimeout(()=>{closeUpload();if(photoWall.classList.contains('show')&&galleryPassword.value)loadGallery(galleryPassword.value,true)},450);
+  }catch(err){showStatus(uploadStatus,err.message||'上传失败','error')}finally{btn.disabled=false}
+});
+
 </script>
 </body>
 </html>
